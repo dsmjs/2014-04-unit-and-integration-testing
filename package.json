@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "grunt-karma": "0.7.1",
+    "grunt-cli": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-ember-template-compiler": "1.5.0",
+    "karma-qunit-special-blend": "*",
+    "karma-qunit": "*",
+    "karma": "0.10",
+    "bower": "*"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}
