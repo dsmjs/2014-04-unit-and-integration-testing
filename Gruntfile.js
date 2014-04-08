@@ -12,9 +12,7 @@ module.exports = function(grunt) {
           "node_modules/qunit-special-blend/run-qunit-special-blend.js"
         ],
         options: {
-          parallel: 2,
           framework: "qunit",
-          launch_in_dev: ["PhantomJS"],
           launch_in_ci: ["PhantomJS"]
         }
       }
@@ -56,5 +54,5 @@ module.exports = function(grunt) {
   });
 
   grunt.task.registerTask('local', ['emberhandlebars', 'concat:dist']);
-  grunt.task.registerTask('test', ['emberhandlebars', 'concat:test', 'testem:ci:basic']);
+  grunt.task.registerTask('test', ['emberhandlebars', 'concat:test', 'testem:ci']);
 }
