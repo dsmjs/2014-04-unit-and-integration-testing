@@ -32,7 +32,19 @@ App.Person = Ember.Object.extend({
         var firstName = this.get('firstName');
         var lastName = this.get('lastName');
         return firstName + ' ' + lastName;
-    }.property('firstName', 'lastName')
+    }.property('firstName', 'lastName'),
+    description: function() {
+        var options = {
+            'A': 'Approved',
+            'B': 'Broken'
+        }
+        var status = this.get('status');
+        var result = options[status];
+        if (!result) {
+            return "Pending";
+        }
+        return result;
+    }.property('status')
 });
 
 App.Person.reopenClass({

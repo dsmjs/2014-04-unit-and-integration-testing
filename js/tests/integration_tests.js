@@ -84,3 +84,13 @@ test('delete will remove the person for a given row', function() {
         equal(find("table tr:eq(0) td:eq(0)").text(), "toran billups", "the wrong person was deleted");
     });
 });
+
+test('description will show a detailed status for each person', function() {
+    var matt = {firstName: "matt", lastName: "morrison", status: "B"};
+    stubEndpointForHttpRequest('/api/people', [matt]);
+    visit("/");
+    andThen(function() {
+        var description = find("table tr:eq(0) td:eq(2)").text();
+        equal(description, "Broken");
+    });
+});
