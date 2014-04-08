@@ -1,12 +1,22 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-ember-template-compiler');
-  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-testem');
 
   grunt.initConfig({
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js'
+    testem: {
+      basic: {
+        src: [
+          "node_modules/qunit-special-blend/qunit-special-blend.js",
+          "js/lib/deps.min.js",
+          "node_modules/qunit-special-blend/run-qunit-special-blend.js"
+        ],
+        options: {
+          parallel: 2,
+          framework: "qunit",
+          launch_in_dev: ["PhantomJS"],
+          launch_in_ci: ["PhantomJS"]
+        }
       }
     },
     concat: {
@@ -46,5 +56,5 @@ module.exports = function(grunt) {
   });
 
   grunt.task.registerTask('local', ['emberhandlebars', 'concat:dist']);
-  grunt.task.registerTask('test', ['emberhandlebars', 'concat:test', 'karma']);
+  grunt.task.registerTask('test', ['emberhandlebars', 'concat:test', 'testem:ci:basic']);
 }
